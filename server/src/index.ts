@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import express, {Application} from 'express';
 
 import userRoute from './routes/user.routes';
+import blogRoute from './routes/blog.routes';
 import errorHandler from './errors/errorHandler';
 import {NODE_ENV, PORT, ALLOW_ORIGIN} from './config/keys';
 
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use('/api', userRoute);
+app.use('/api', blogRoute);
 
 app.use(express.static(path.join(__dirname, '..', '..', 'client', 'dist')));
 app.get('*', (req, res) =>
