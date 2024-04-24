@@ -1,46 +1,16 @@
-import axios from 'axios';
-import url from '../config';
-import {toast} from 'react-toastify';
-import {useRef, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useContext} from 'react';
+import {AuthContext} from '../context/auth';
 
 export default function SubmitOTP() {
-  const navigate = useNavigate();
+  const context = useContext(AuthContext);
 
-  const formRef = useRef();
-  const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({email: '', OTP: ''});
+  if (context === undefined)
+    throw new Error('useHome must be used within a AuthProvider');
 
-  const handleChange = ({target: {name, value}}) => {
-    setForm({...form, [name]: value});
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      const response = await axios.post(`${url}/auth/login`, form, {
-        headers: {'Content-Type': 'application/json'},
-        withCredentials: true,
-      });
-      if (response.status === 200) {
-        navigate('/dashboard');
-        toast.success('Logged in successfully');
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error('Failed to log in');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const {form, loading, handleChange, submitOTP} = context;
 
   return (
-    <form
-      ref={formRef}
-      onSubmit={handleSubmit}
-      className={`flex flex-col gap-2 lg:w-[35%]`}>
+    <div className={`flex flex-col gap-2 lg:w-[35%]`}>
       <input
         type="email"
         id="email"
@@ -63,11 +33,11 @@ export default function SubmitOTP() {
       />
 
       <button
-        type="submit"
         disabled={loading}
+        onClick={submitOTP}
         className={`px-5 py-2 bg-red-500 rounded-xl text-white hover:bg-red-600`}>
         {loading ? 'Logging in...' : 'Log in'}
       </button>
-    </form>
+    </div>
   );
 }

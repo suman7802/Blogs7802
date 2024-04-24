@@ -54,7 +54,7 @@ export default function NavBar() {
             &nbsp;Sign in
           </Link>
           <Link
-            to="/post-listing"
+            to="/blogs/new"
             className="bg-red-500 hover:bg-red-600 transition-colors duration-200 text-white py-2 px-4 rounded-[5vh] cursor-pointer">
             <FontAwesomeIcon icon={faPlus} />
             &nbsp;Post Blog
