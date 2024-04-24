@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import {useState} from 'react';
 
-export default function CardPrivate({
+export default function CardAuthor({
   title,
   content,
   picture,
@@ -54,7 +54,7 @@ export default function CardPrivate({
   );
 }
 
-CardPrivate.propTypes = {
+CardAuthor.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,

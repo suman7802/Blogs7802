@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {toast} from 'react-toastify';
 import {createContext, useReducer, useEffect} from 'react';
 
-const ProfileContext = createContext();
+const AuthorContext = createContext();
 
 const initialState = {
   name: null,
@@ -34,7 +34,7 @@ function reducer(state, action) {
       throw new Error(`Unhandled action type: ${action.type}`);
   }
 }
-function ProfileProvider({children, id}) {
+function AuthorProvider({children, id}) {
   const [{name, profile, Blogs, loading, totalBlogs}, dispatch] = useReducer(
     reducer,
     initialState
@@ -78,16 +78,16 @@ function ProfileProvider({children, id}) {
   }, []);
 
   return (
-    <ProfileContext.Provider
+    <AuthorContext.Provider
       value={{name, profile, Blogs, loading, totalBlogs}}>
       {children}
-    </ProfileContext.Provider>
+    </AuthorContext.Provider>
   );
 }
 
-ProfileProvider.propTypes = {
+AuthorProvider.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string,
 };
 
-export {ProfileProvider, ProfileContext};
+export {AuthorProvider, AuthorContext};

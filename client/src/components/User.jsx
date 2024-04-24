@@ -1,9 +1,9 @@
 import {useContext} from 'react';
-import {ProfileContext} from '../context/profile';
-import CardPrivate from './CardPrivate';
+import CardUser from './CardUser';
+import {UserContext} from '../context/User';
 
-export default function UserProfile() {
-  const context = useContext(ProfileContext);
+export default function User() {
+  const context = useContext(UserContext);
 
   if (context === undefined)
     throw new Error('useHome must be used within a ProfileProvider');
@@ -29,7 +29,7 @@ export default function UserProfile() {
       </div>
       <div className="flex flex-col flex-wrap md:flex-row items-center justify-center gap-5 ]">
         {Blogs.map((blog, index) => (
-          <CardPrivate
+          <CardUser
             key={index}
             title={blog.title}
             content={blog.content}

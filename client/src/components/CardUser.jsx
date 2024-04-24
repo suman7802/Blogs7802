@@ -1,15 +1,11 @@
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 import {useState} from 'react';
 
-export default function Card({
-  id,
+export default function CardUser({
   title,
   content,
   picture,
   visibility,
-  name,
-  profile,
   createdAt,
   updatedAt,
 }) {
@@ -24,7 +20,7 @@ export default function Card({
   let date = updatedAt ? updatedAt : createdAt;
 
   return (
-    <div className="flex flex-col w-[calc(90vw)] md:w-[calc(80vw)] items-start rounded-lg border border-gray-300">
+    <div className="flex flex-col w-[calc(90vw)] md:w-[calc(80vw)] rounded-lg border border-gray-300">
       <div className="relative picture ">
         <img
           src={picture}
@@ -36,9 +32,12 @@ export default function Card({
         </span>
       </div>
 
-      <div className="details flex flex-col py-4 gap-2 px-5">
-        <div className="price flex flex-row gap-2 items-center">
-          <span className="rent text-red-500">{title}</span>
+      <div className="details flex flex-col py-4 gap-2 px-5 w-full text-center bg-gray-100">
+        <div className="price flex flex-row gap-2 items-baseline justify-center w-full">
+          <span className="rent text-red-500 ">{title}</span>
+          <span className="text-xs text-gray-600 font-thin">
+            {new Date(date).toDateString()}
+          </span>
         </div>
 
         <div
@@ -51,38 +50,15 @@ export default function Card({
           {isExpanded ? 'Show less' : 'Show more'}
         </span>
       </div>
-
-      <div className="profile flex pl-5 flex-row w-full items-center justify-start py-4 border-t-[1.5px]">
-        <div className="profile flex flex-row items-center gap-4">
-          <img
-            src={profile}
-            alt="profile"
-            className="w-14 h-14 object-cover rounded-full"
-          />
-          <div className="info flex flex-col">
-            <Link
-              to={`/author/${id}`}
-              className="name text-sm hover:underline hover:cursor-pointer">
-              {name}
-            </Link>
-            <span className="text-xs text-gray-600 font-thin">
-              {new Date(date).toDateString()}
-            </span>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
 
-Card.propTypes = {
-  id: PropTypes.number.isRequired,
+CardUser.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
   visibility: PropTypes.bool.isRequired,
-  name: PropTypes.string.isRequired,
-  profile: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
   updatedAt: PropTypes.string.isRequired,
 };

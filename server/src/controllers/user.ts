@@ -41,7 +41,7 @@ const user = {
     });
 
     const totalBlogs = await prisma.blog.count({
-      where: {userId: id, private: false},
+      where: {userId: id},
     });
 
     res.status(200).send({...user, totalBlogs});
