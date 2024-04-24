@@ -10,7 +10,8 @@ userRoute.post('/auth/login', authController.login);
 userRoute.post('/auth/req-otp', authController.reqOTP);
 
 userRoute.use(validate.cookie);
-userRoute.put('/user/setup', uploadToMemory.single('profile'), user.setupProfile);
-
+userRoute.get('/profile', user.profile);
+userRoute.get('/profile/:id', user.getProfile);
+userRoute.put('/profile/setup', uploadToMemory.single('profile'), user.setupProfile);
 
 export default userRoute;

@@ -1,24 +1,15 @@
 import BlogCard from './Card';
+import {useContext} from 'react';
 import SimpleButton from './SimpleButtons';
-import {useEffect, useState} from 'react';
-import axios from 'axios';
-import url from '../config';
+import {BlogContext} from '../context/Blog';
 
 export default function Blogs() {
-  const [blogPosts, setBlogPosts] = useState([]);
+  const context = useContext(BlogContext);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${url}/blogs?skip=0`);
-        setBlogPosts(response.data);
-      } catch (error) {
-        console.error('Failed to fetch blogs', error);
-      }
-    };
+  if (context === undefined)
+    throw new Error('useHome must be used within a BlogProvider');
 
-    fetchData();
-  }, []);
+  const {blogPosts, fetchBlogs, loading} = context;
 
   return (
     <>
@@ -35,12 +26,15 @@ export default function Blogs() {
             profile={blog.user.profile}
             createdAt={blog.createdAt}
             updatedAt={blog.updatedAt}
-            email={blog.user.email}
           />
         ))}
       </div>
       <div className="lodeSection w-full flex items-center justify-center my-5">
-        <SimpleButton text={'Lode More'} fev={false} />
+        <SimpleButton
+          onClick={fetchBlogs}
+          text={'Lode More'}
+          active={loading}
+        />
       </div>
     </>
   );

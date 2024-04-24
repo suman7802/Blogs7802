@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Auth from './pages/Auth';
+import Profile from './pages/Profile';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import {ToastContainer} from 'react-toastify';
@@ -14,10 +15,11 @@ export default function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" index element={<Home />} />
+          <Route path="/*" index element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/auth/*" element={<Auth />} />
+          <Route path="/profile/:id/*" element={<Profile />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer position="bottom-right" />
