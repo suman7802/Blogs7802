@@ -12,6 +12,7 @@ export default function Card({
   profile,
   createdAt,
   updatedAt,
+  email,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -49,11 +50,11 @@ export default function Card({
           className={`text-base flex flex-row items-center gap-2 justify-around`}>
           {isExpanded ? content : shortContent}
         </div>
-        <button
+        <span
           onClick={() => toggleDescription(!isExpanded)}
-          className="text-blue-500">
+          className="text-blue-500 text-base text-center">
           {isExpanded ? 'Show less' : 'Show more'}
-        </button>
+        </span>
       </div>
 
       <div className="profile flex pl-5 flex-row w-full items-center justify-start py-4 border-t-[1.5px]">
@@ -64,9 +65,11 @@ export default function Card({
             className="w-14 h-14 object-cover rounded-full"
           />
           <div className="info flex flex-col">
-            <span className="name text-sm hover:underline hover:cursor-pointer">
+            <Link
+              to={`mailto:${email}`}
+              className="name text-sm hover:underline hover:cursor-pointer">
               {name}
-            </span>
+            </Link>
             <span className="text-xs text-gray-600 font-thin">
               {new Date(date).toDateString()}
             </span>
@@ -87,4 +90,5 @@ Card.propTypes = {
   profile: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
   updatedAt: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
 };

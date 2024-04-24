@@ -29,7 +29,7 @@ const blog = {
 
     const blogs = await prisma.blog.findMany({
       where: {private: false},
-      include: {user: {select: {name: true, profile: true}}},
+      include: {user: {select: {name: true, profile: true, email: true}}},
       take: 5,
       skip: skip,
     });
