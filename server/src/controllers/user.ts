@@ -12,13 +12,13 @@ const user = {
       const image = req.file;
       const id = Number(req.user.id);
 
-      const imageUrl = await uploadPhoto(image);
+      const profileUrl = await uploadPhoto(image);
 
       const updateUser = await prisma.user.update({
         where: {id},
         data: {
           name: req.body.name,
-          profile: imageUrl || '',
+          profile: profileUrl || '',
         },
       });
 
