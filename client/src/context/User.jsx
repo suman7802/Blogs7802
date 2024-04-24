@@ -121,13 +121,23 @@ function UserProvider({children}) {
       console.error('Failed to update blog', error);
       toast.error('Failed to update blog');
     }
-  }
+  };
 
   return (
-    <UserContext.Provider value={{name, profile, Blogs, loading, totalBlogs}}>
+    <UserContext.Provider
+      value={{
+        name,
+        profile,
+        Blogs,
+        loading,
+        totalBlogs,
+        updateBlog,
+        deleteBlog,
+      }}>
       {children}
     </UserContext.Provider>
-  );``
+  );
+  ``;
 }
 
 UserProvider.propTypes = {
