@@ -39,7 +39,6 @@ function BlogProvider({children}) {
       dispatch({type: 'INCREMENT_SKIP'});
     } catch (error) {
       console.error('Failed to fetch blogs', error);
-      toast.error('Failed to fetch blogs');
       dispatch({type: 'SET_LOADING', payload: false});
     }
   };
