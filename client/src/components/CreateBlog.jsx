@@ -10,7 +10,7 @@ export default function CreateBlog() {
 
   const [title, setTitle] = useState('');
   const [picture, setPicture] = useState(null);
-  const [content, setContent] = useState(null);
+  const [content, setContent] = useState('');
   const [visibility, setVisibility] = useState(false);
 
   const handleSubmit = (event) => {

@@ -31,7 +31,7 @@ export default function Card({
           alt="property"
           className="object-cover rounded-t-lg w-[calc(90vw)] md:w-[calc(80vw)] h-[50vh]"
         />
-        <span className="absolute text-sm text-white top-3 right-3 bg-green-600 px-2 rounded-[5vh]">
+        <span className="absolute text-sm text-white top-3 right-3 bg-green-600 px-2 rounded-[5vh] hover:cursor-pointer">
           {visibility ? 'Private' : 'Public'}
         </span>
       </div>
@@ -47,7 +47,7 @@ export default function Card({
         </div>
         <span
           onClick={() => toggleDescription(!isExpanded)}
-          className="text-blue-500 text-base text-center">
+          className="text-blue-500 text-base text-center hover:cursor-pointer">
           {isExpanded ? 'Show less' : 'Show more'}
         </span>
       </div>

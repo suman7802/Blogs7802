@@ -60,7 +60,7 @@ export default function CardUser({
             alt="property"
             className="object-cover rounded-t-lg w-[calc(90vw)] md:w-[calc(80vw)] h-[50vh]"
           />
-          <span className="absolute text-sm text-white top-3 right-3 bg-green-600 px-2 rounded-[5vh]">
+          <span className="absolute text-sm text-white top-3 right-3 bg-green-600 px-2 rounded-[5vh] hover:cursor-pointer">
             {visibility ? 'Private' : 'Public'}
           </span>
 
@@ -71,7 +71,7 @@ export default function CardUser({
           </span>
           <FontAwesomeIcon
             icon={faTrash}
-            className="h-5 absolute text-sm text-red-300 top-20 right-3 px-2 hover:cursor-pointer active:text-red-600"
+            className="h-5 absolute text-sm text-red-300 top-20 right-3 px-2 hover:cursor-pointer hover:text-red-500 active:text-red-700"
             onClick={() => deleteBlog(id)}
           />
         </div>
@@ -90,7 +90,7 @@ export default function CardUser({
           </div>
           <span
             onClick={() => toggleDescription(!isExpanded)}
-            className="text-blue-500 text-base text-center">
+            className="text-blue-500 text-base text-center hover:cursor-pointer">
             {isExpanded ? 'Show less' : 'Show more'}
           </span>
         </div>
@@ -100,7 +100,7 @@ export default function CardUser({
 }
 
 CardUser.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.any.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,
