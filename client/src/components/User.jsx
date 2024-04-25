@@ -2,6 +2,7 @@ import {useContext, useState} from 'react';
 import CardUser from './CardUser';
 import {UserContext} from '../context/User';
 import UpdateBlogForm from './UpdateProfile';
+import Avatar from '../assets/avatar.svg';
 
 export default function User() {
   const context = useContext(UserContext);
@@ -22,7 +23,7 @@ export default function User() {
       <div className="profile flex flex-col w-screen items-center py-10 gap-10">
         <div className="profile relative flex flex-col items-center gap-4">
           <img
-            src={profile}
+            src={profile || Avatar}
             alt="profile"
             className="w-64 h-64 object-cover rounded-full"
           />
@@ -33,7 +34,7 @@ export default function User() {
           </span>
           <div className="info flex flex-col items-center">
             <span className="name text-3xl font-semibold text-gray-500">
-              {name}
+              {name || 'New User'}
             </span>
             <span className="text-xl text-gray-500">
               {totalBlogs} {totalBlogs > 1 ? 'Blogs' : 'Blog'}

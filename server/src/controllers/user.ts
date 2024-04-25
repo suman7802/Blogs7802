@@ -9,16 +9,16 @@ const user = {
     async (req: Request, res: Response, next: NextFunction) => {
       if (!req.user) throw new CustomError(`Not Found`, 404);
 
-      const image = req.file;
       const id = Number(req.user.id);
 
-      const profileUrl = await uploadPhoto(image);
+      let profileUrl = null;
+      if (req.file) profileUrl = await uploadPhoto(req.file);
 
       const updateUser = await prisma.user.update({
         where: {id},
         data: {
           name: req.body.name,
-          profile: profileUrl || '',
+          profile: profileUrl,
         },
       });
 

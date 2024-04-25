@@ -37,6 +37,7 @@ export default function UpdateBlogForm({name, togglePOPUP}) {
             type="text"
             className="bg-transparent border border-gray-400 rounded-md px-2 outline-none"
             value={updatedName}
+            placeholder="User Name"
             onChange={(e) => setUpdatedName(e.target.value)}
           />
 

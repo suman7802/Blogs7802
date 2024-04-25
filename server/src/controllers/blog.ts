@@ -10,7 +10,7 @@ const blog = {
 
     const id = Number(req.user.id);
 
-    let pictureUrl = '';
+    let pictureUrl = null;
     if (req.file) pictureUrl = await uploadPhoto(req.file);
 
     const privateValue = JSON.parse(req.body.private);
