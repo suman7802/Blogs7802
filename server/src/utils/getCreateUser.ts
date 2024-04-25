@@ -2,15 +2,20 @@ import sendOTP from './sendOTP';
 import generateOTP from './generateOTP';
 import {PrismaClient} from '@prisma/client';
 import existingUser from './existingUser';
+import {NODE_ENV} from '../config/keys';
 
 const prisma = new PrismaClient();
+
+const isLocal = NODE_ENV === 'development';
 
 export default async function getCreateUser(email: string) {
   const user = await existingUser(email);
 
   if (!user) {
     const {hashedOTP, OTP} = await generateOTP();
-    await sendOTP(OTP, email);
+
+    if (!isLocal) await sendOTP(OTP, email);
+
     const newUser = await prisma.user.create({
       data: {
         email,
@@ -29,7 +34,9 @@ export default async function getCreateUser(email: string) {
 
   if (OTPExpire) {
     const {hashedOTP, OTP} = await generateOTP();
-    await sendOTP(OTP, email);
+
+    if (!isLocal) await sendOTP(OTP, email);
+
     const updatedUser = await prisma.user.update({
       where: {email},
       data: {
