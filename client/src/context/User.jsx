@@ -34,7 +34,7 @@ function reducer(state, action) {
     case 'DELETE_BLOG':
       return {
         ...state,
-        Blogs: state.Blogs.filter((blog) => blog._id !== action.payload),
+        Blogs: state.Blogs.filter((blog) => blog.id !== action.payload),
         totalBlogs: state.totalBlogs - 1,
       };
 
@@ -42,7 +42,7 @@ function reducer(state, action) {
       return {
         ...state,
         Blogs: state.Blogs.map((blog) => {
-          if (blog._id === action.payload._id)
+          if (blog.id === action.payload.id)
             return {...blog, ...action.payload};
           return blog;
         }),
@@ -111,7 +111,7 @@ function UserProvider({children}) {
 
   const updateBlog = async (id, data) => {
     try {
-      const response = await axios.put(`${url}/blog/${id}`, data, {
+      const response = await axios.put(`${url}/blogs/${id}`, data, {
         headers: {'Content-Type': 'application/json'},
         withCredentials: true,
       });

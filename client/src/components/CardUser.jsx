@@ -1,7 +1,12 @@
-import PropTypes from 'prop-types';
 import {useState} from 'react';
+import {useContext} from 'react';
+import PropTypes from 'prop-types';
+import {UserContext} from '../context/User';
+import {faTrash} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 export default function CardUser({
+  id,
   title,
   content,
   picture,
@@ -9,6 +14,13 @@ export default function CardUser({
   createdAt,
   updatedAt,
 }) {
+  const context = useContext(UserContext);
+
+  if (context === undefined)
+    throw new Error('useHome must be used within a ProfileProvider');
+
+  const {deleteBlog} = context;
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleDescription = () => {
@@ -30,6 +42,11 @@ export default function CardUser({
         <span className="absolute text-sm text-white top-3 right-3 bg-green-600 px-2 rounded-[5vh]">
           {visibility ? 'Private' : 'Public'}
         </span>
+        <FontAwesomeIcon
+          icon={faTrash}
+          className="h-6 absolute text-sm text-red-300 top-20 right-3 px-2 hover:cursor-pointer active:text-red-600"
+          onClick={() => deleteBlog(id)}
+        />
       </div>
 
       <div className="details flex flex-col py-4 gap-2 px-5 w-full text-center bg-gray-100">
@@ -55,6 +72,7 @@ export default function CardUser({
 }
 
 CardUser.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   picture: PropTypes.string.isRequired,

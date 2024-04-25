@@ -31,6 +31,7 @@ export default function User() {
         {Blogs.map((blog, index) => (
           <CardUser
             key={index}
+            id={blog.id}
             title={blog.title}
             content={blog.content}
             picture={blog.picture}
