@@ -11,12 +11,14 @@ const blog = {
     const id = Number(req.user.id);
     const pictureUrl = await uploadPhoto(req.file);
 
+    const privateValue = JSON.parse(req.body.private);
+
     const updateUser = await prisma.blog.create({
       data: {
         user: {connect: {id}},
         title: req.body.title,
         content: req.body.content,
-        private: req.body.private,
+        private: privateValue,
         picture: pictureUrl || '',
       },
     });
@@ -77,12 +79,14 @@ const blog = {
     let pictureUrl = blog.picture;
     if (req.file) pictureUrl = await uploadPhoto(req.file);
 
+    const privateValue = JSON.parse(req.body.private);
+
     const updateBlog = await prisma.blog.update({
       where: {id: blogId},
       data: {
         title: req.body.title ?? blog.title,
         content: req.body.content ?? blog.content,
-        private: req.body.private ?? blog.private,
+        private: privateValue ?? blog.private,
         picture: pictureUrl,
       },
     });
