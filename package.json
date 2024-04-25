@@ -1,0 +1,13 @@
+{
+  "name": "blogs",
+  "version": "1.0.0",
+  "description": "## Introduction",
+  "main": "index.js",
+  "scripts": {
+   "client":"cd client && npm install && npm run build",
+    "server": "cd server && npm install && npm run dev",
+    "dev": "npm run client && npm run server"
+  },
+  "author": "",
+  "license": "ISC"
+}
