@@ -19,7 +19,7 @@ export default function CardUser({
   if (context === undefined)
     throw new Error('useHome must be used within a ProfileProvider');
 
-  const {deleteBlog} = context;
+  const {deleteBlog, updateBlog} = context;
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -42,9 +42,13 @@ export default function CardUser({
         <span className="absolute text-sm text-white top-3 right-3 bg-green-600 px-2 rounded-[5vh]">
           {visibility ? 'Private' : 'Public'}
         </span>
+
+        <span className="absolute text-sm text-white top-11 right-3 bg-blue-500 px-2 rounded-[5vh]">
+          edit
+        </span>
         <FontAwesomeIcon
           icon={faTrash}
-          className="h-6 absolute text-sm text-red-300 top-20 right-3 px-2 hover:cursor-pointer active:text-red-600"
+          className="h-5 absolute text-sm text-red-300 top-20 right-3 px-2 hover:cursor-pointer active:text-red-600"
           onClick={() => deleteBlog(id)}
         />
       </div>

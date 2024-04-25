@@ -10,7 +10,7 @@ export default async function getCreateUser(email: string) {
 
   if (!user) {
     const {hashedOTP, OTP} = await generateOTP();
-    await sendOTP(OTP, email);
+    // await sendOTP(OTP, email);
     const newUser = await prisma.user.create({
       data: {
         email,
@@ -29,7 +29,7 @@ export default async function getCreateUser(email: string) {
 
   if (OTPExpire) {
     const {hashedOTP, OTP} = await generateOTP();
-    await sendOTP(OTP, email);
+    // await sendOTP(OTP, email);
     const updatedUser = await prisma.user.update({
       where: {email},
       data: {
