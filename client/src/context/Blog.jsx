@@ -49,8 +49,29 @@ function BlogProvider({children}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const addBlog = async (data) => {
+    console.log(data.get('title'));
+    console.log(data.get('picture'));
+    console.log(data.get('content'));
+    console.log(data.get('private'));
+
+    dispatch({type: 'SET_LOADING', payload: true});
+    try {
+      await axios.post(`${url}/blogs`, data, {
+        withCredentials: true,
+      });
+      toast.success('Blog added successfully');
+      fetchBlogs();
+    } catch (error) {
+      console.error('Failed to add blog', error);
+      toast.error('Failed to add blog');
+    } finally {
+      dispatch({type: 'SET_LOADING', payload: false});
+    }
+  };
+
   return (
-    <BlogContext.Provider value={{blogPosts, fetchBlogs, loading}}>
+    <BlogContext.Provider value={{blogPosts, fetchBlogs, loading, addBlog}}>
       {children}
     </BlogContext.Provider>
   );

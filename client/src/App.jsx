@@ -21,7 +21,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/auth/*" element={<Auth />} />
-            <Route path="/user/*" element={<User />} />
+            <Route path="/user" element={<User />} />
             <Route path="/author/:id/*" element={<Authors />} />
           </Routes>
         </UserProvider>

@@ -14,5 +14,4 @@ blogRoute.delete('/blogs/:id', blog.delete);
 blogRoute.post('/blogs', uploadToMemory.single('picture'), blog.create);
 blogRoute.put('/blogs/:id', uploadToMemory.single('picture'), blog.update);
 
-
 export default blogRoute;

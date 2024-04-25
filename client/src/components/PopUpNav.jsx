@@ -19,11 +19,11 @@ export default function PopUpNav() {
       <Link to="/blogs" className="text-white cursor-pointer">
         Blogs
       </Link>
-      <Link to="/about" className="text-white cursor-pointer">
-        About Me
-      </Link>
       <Link to="/user" className="text-white cursor-pointer">
         Manage
+      </Link>
+      <Link to="/about" className="text-white cursor-pointer">
+        About Me
       </Link>
       <Link to="/contact" className="text-white cursor-pointer">
         Contact

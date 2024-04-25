@@ -110,16 +110,41 @@ function UserProvider({children}) {
   };
 
   const updateBlog = async (id, data) => {
+    dispatch({type: 'SET_LOADING', payload: true});
     try {
       const response = await axios.put(`${url}/blogs/${id}`, data, {
-        headers: {'Content-Type': 'application/json'},
         withCredentials: true,
       });
-
       dispatch({type: 'UPDATE_BLOG', payload: response.data});
+      toast.success('Blog updated successfully');
+      fetchProfile();
     } catch (error) {
       console.error('Failed to update blog', error);
       toast.error('Failed to update blog');
+    } finally {
+      dispatch({type: 'SET_LOADING', payload: false});
+    }
+  };
+
+  const updateProfile = async (data) => {
+    dispatch({type: 'SET_LOADING', payload: true});
+    try {
+      const response = await axios.put(`${url}/profile/setup`, data, {
+        withCredentials: true,
+      });
+      dispatch({
+        type: 'SET_USER',
+        payload: {
+          name: response.data.name,
+          profile: response.data.profile,
+        },
+      });
+      toast.success('Profile updated successfully');
+    } catch (error) {
+      console.error('Failed to update profile', error);
+      toast.error('Failed to update profile');
+    } finally {
+      dispatch({type: 'SET_LOADING', payload: false});
     }
   };
 
@@ -133,6 +158,7 @@ function UserProvider({children}) {
         totalBlogs,
         updateBlog,
         deleteBlog,
+        updateProfile,
       }}>
       {children}
     </UserContext.Provider>

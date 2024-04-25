@@ -9,7 +9,9 @@ const blog = {
     if (!req.user) throw new CustomError(`Not Found`, 404);
 
     const id = Number(req.user.id);
-    const pictureUrl = await uploadPhoto(req.file);
+
+    let pictureUrl = '';
+    if (req.file) pictureUrl = await uploadPhoto(req.file);
 
     const privateValue = JSON.parse(req.body.private);
 
@@ -19,7 +21,7 @@ const blog = {
         title: req.body.title,
         content: req.body.content,
         private: privateValue,
-        picture: pictureUrl || '',
+        picture: pictureUrl,
       },
     });
 

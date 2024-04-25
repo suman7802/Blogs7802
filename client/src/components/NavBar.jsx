@@ -85,7 +85,7 @@ export default function NavBar() {
           )}
 
           <Link
-            to="/blogs/new"
+            to="/add"
             className="bg-red-500 hover:bg-red-600 transition-colors duration-200 text-white py-2 px-4 rounded-[5vh] cursor-pointer">
             <FontAwesomeIcon icon={faPlus} />
             &nbsp;Post Blog
