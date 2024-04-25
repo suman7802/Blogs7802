@@ -60,7 +60,7 @@ function AuthProvider({children}) {
         withCredentials: true,
       });
       if (response.status === 200) {
-        navigate('/dashboard');
+        navigate('/user');
         toast.success('Logged in successfully');
       }
     } catch (error) {
