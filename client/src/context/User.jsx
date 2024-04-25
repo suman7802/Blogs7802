@@ -97,7 +97,7 @@ function UserProvider({children}) {
 
   const deleteBlog = async (id) => {
     try {
-      await axios.delete(`${url}/blog/${id}`, {
+      await axios.delete(`${url}/blogs/${id}`, {
         headers: {'Content-Type': 'application/json'},
         withCredentials: true,
       });
