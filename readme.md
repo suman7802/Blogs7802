@@ -33,7 +33,7 @@ dev server instances
 [server side](http://localhost:8000)
 
 prod server instances
-[click here](http://localhost:8000)
+[click here](https://blogs7802.onrender.com/)
 
 ## Usage
 
