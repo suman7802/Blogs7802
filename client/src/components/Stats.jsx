@@ -26,7 +26,7 @@ export default function Stats() {
         <span className="text-4xl">Insides and Performance Metrics</span>
       </div>
       <div className="flex flex-col md:flex-row items-center justify-center md:justify-start md:overflow-x-scroll my-5 gap-5">
-        {stats.map((property, index) => (
+        {(stats || []).map((property, index) => (
           <StatsCard key={index} count={property.count} text={property.text} />
         ))}
       </div>

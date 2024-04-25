@@ -55,7 +55,7 @@ export default function About() {
           <span className="font-semibold">Patan Multiple Campus.</span>
         </span>
         <div className="social mt-4 flex flex-row gap-3">
-          {socialButtons.map((button, index) => (
+          {(socialButtons || []).map((button, index) => (
             <SocialButton key={index} icon={button.icon} url={button.url} />
           ))}
         </div>

@@ -43,7 +43,7 @@ export default function User() {
           </div>
         </div>
         <div className="flex flex-col flex-wrap md:flex-row items-center justify-center gap-5 ]">
-          {Blogs.map((blog, index) => (
+          {(Blogs || []).map((blog, index) => (
             <CardUser
               key={index}
               id={blog.id}

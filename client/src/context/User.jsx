@@ -41,7 +41,7 @@ function reducer(state, action) {
     case 'UPDATE_BLOG':
       return {
         ...state,
-        Blogs: state.Blogs.map((blog) => {
+        Blogs: (state.Blogs || []).map((blog) => {
           if (blog.id === action.payload.id)
             return {...blog, ...action.payload};
           return blog;

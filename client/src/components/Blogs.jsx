@@ -14,7 +14,7 @@ export default function Blogs() {
   return (
     <>
       <div className="flex flex-col flex-wrap md:flex-row items-center justify-center gap-5">
-        {blogPosts.map((blog, index) => (
+        {(blogPosts || []).map((blog, index) => (
           <BlogCard
             id={blog?.user?.id}
             key={index}

@@ -3,7 +3,6 @@ import SubmitOTP from '../components/SubmitOTP';
 
 import {Routes, Route} from 'react-router-dom';
 import {AuthProvider} from '../context/Auth';
-
 export default function Auth() {
   return (
     <>
