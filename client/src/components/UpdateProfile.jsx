@@ -23,7 +23,7 @@ export default function UpdateBlogForm({name, togglePOPUP}) {
   };
 
   return (
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-gray-200 border border-gray-300 rounded-md shadow-lg">
+    <div className="absolute w-80 top-80 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 bg-gray-200 border border-gray-300 rounded-md">
       {loading ? (
         <span className="text-2xl font-semibold text-red-500 px-5">
           Updating...
@@ -71,6 +71,5 @@ export default function UpdateBlogForm({name, togglePOPUP}) {
 
 UpdateBlogForm.propTypes = {
   name: PropTypes.string.isRequired,
-  onUpdate: PropTypes.func.isRequired,
   togglePOPUP: PropTypes.func.isRequired,
 };

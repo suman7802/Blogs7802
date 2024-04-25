@@ -16,8 +16,6 @@ export default function User() {
     setIsEditing((isEditing) => !isEditing);
   };
 
-  () => setIsEditing(true);
-
   return (
     <div className="relative">
       {isEditing && <UpdateBlogForm name={name} togglePOPUP={togglePOPUP} />}
