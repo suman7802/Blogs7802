@@ -50,11 +50,6 @@ function BlogProvider({children}) {
   }, []);
 
   const addBlog = async (data) => {
-    console.log(data.get('title'));
-    console.log(data.get('picture'));
-    console.log(data.get('content'));
-    console.log(data.get('private'));
-
     dispatch({type: 'SET_LOADING', payload: true});
     try {
       await axios.post(`${url}/blogs`, data, {

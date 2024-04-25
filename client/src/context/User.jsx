@@ -84,7 +84,6 @@ function UserProvider({children}) {
       });
     } catch (error) {
       console.error('Failed to fetch profile', error);
-      toast.error('Failed to fetch profile');
     } finally {
       dispatch({type: 'SET_LOADING', payload: false});
     }

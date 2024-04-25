@@ -1,7 +1,6 @@
 import axios from 'axios';
 import url from '../config';
 import PropTypes from 'prop-types';
-import {toast} from 'react-toastify';
 import {createContext, useReducer, useEffect} from 'react';
 
 const AuthorContext = createContext();
@@ -66,7 +65,6 @@ function AuthorProvider({children, id}) {
       });
     } catch (error) {
       console.error('Failed to fetch profile', error);
-      toast.error('Failed to fetch profile');
     } finally {
       dispatch({type: 'SET_LOADING', payload: false});
     }
@@ -78,8 +76,7 @@ function AuthorProvider({children, id}) {
   }, []);
 
   return (
-    <AuthorContext.Provider
-      value={{name, profile, Blogs, loading, totalBlogs}}>
+    <AuthorContext.Provider value={{name, profile, Blogs, loading, totalBlogs}}>
       {children}
     </AuthorContext.Provider>
   );
